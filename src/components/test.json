@@ -1,0 +1,185 @@
+{
+  "html_attributions": [],
+  "results": [
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 30.1676608,
+          "lng": -97.7733992
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 30.1689695302915,
+            "lng": -97.7719936197085
+          },
+          "southwest": {
+            "lat": 30.1662715697085,
+            "lng": -97.77469158029152
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Wilder Dog Wash",
+      "place_id": "ChIJPRrFtEuzRIYR-UrXcA880AM",
+      "plus_code": {
+        "compound_code": "569G+3J Austin, TX, USA",
+        "global_code": "8624569G+3J"
+      },
+      "rating": 1,
+      "reference": "ChIJPRrFtEuzRIYR-UrXcA880AM",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 1,
+      "vicinity": "8350 Bluff Springs Road, Austin"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 30.1691367,
+          "lng": -97.77378059999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 30.1704794802915,
+            "lng": -97.77245756970849
+          },
+          "southwest": {
+            "lat": 30.1677815197085,
+            "lng": -97.7751555302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Fido House 3",
+      "place_id": "ChIJk06iwcGzRIYRXyaMcPc2ou0",
+      "plus_code": {
+        "compound_code": "569G+MF Austin, TX, USA",
+        "global_code": "8624569G+MF"
+      },
+      "rating": 1,
+      "reference": "ChIJk06iwcGzRIYRXyaMcPc2ou0",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 1,
+      "vicinity": "8300 Bluff Springs Road #1016, Austin"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 30.1641266,
+          "lng": -97.76935759999999
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 30.1654656802915,
+            "lng": -97.76800961970849
+          },
+          "southwest": {
+            "lat": 30.1627677197085,
+            "lng": -97.7707075802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Dog Ranch South Austin",
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/101444109873794493943\"\u003eRoger Navarro\u003c/a\u003e"
+          ],
+          "photo_reference": "Aap_uEAkTfHy4ZLJvKxgH04Tm7zefJfubtu3PEBTXx4plP-h0NIOCmL02-Qrd-JYn0OE6vFhbudmmqTXZ369VLQByRVoWbxw_E_EzlfkVb-7TlvsZ7pY-yw8FlZE31mFsG0o2YPDgAyUkgIfT2SmEh4wiM1TVAAsQ7LOf63TR6uycxqnhDZ5",
+          "width": 3024
+        }
+      ],
+      "place_id": "ChIJmXe_NX2zRIYRpFsN2H3i1Sg",
+      "plus_code": {
+        "compound_code": "567J+M7 Austin, TX, USA",
+        "global_code": "8624567J+M7"
+      },
+      "rating": 3,
+      "reference": "ChIJmXe_NX2zRIYRpFsN2H3i1Sg",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 2,
+      "vicinity": "Austin"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 30.1683089,
+          "lng": -97.77107470000001
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 30.16966023029149,
+            "lng": -97.76973236970849
+          },
+          "southwest": {
+            "lat": 30.1669622697085,
+            "lng": -97.77243033029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Wilder Large Dog Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "place_id": "ChIJMXEtW_CzRIYREWTEkhsB1hk",
+      "plus_code": {
+        "compound_code": "569H+8H Austin, TX, USA",
+        "global_code": "8624569H+8H"
+      },
+      "reference": "ChIJMXEtW_CzRIYREWTEkhsB1hk",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "vicinity": "8350 Bluff Springs Road, Austin"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 30.1692431,
+          "lng": -97.770715
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 30.1705738302915,
+            "lng": -97.7693076197085
+          },
+          "southwest": {
+            "lat": 30.16787586970851,
+            "lng": -97.77200558029151
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "icon_background_color": "#4DB546",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet",
+      "name": "Fido House Station 2",
+      "place_id": "ChIJM-QdfROzRIYRHzv32paH8DE",
+      "plus_code": {
+        "compound_code": "569H+MP Austin, TX, USA",
+        "global_code": "8624569H+MP"
+      },
+      "reference": "ChIJM-QdfROzRIYRHzv32paH8DE",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "vicinity": "8300 Bluff Springs Road, Austin"
+    }
+  ],
+  "status": "OK"
+}
