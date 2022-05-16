@@ -4,8 +4,9 @@ import axios from "axios";
 
 const Nearby = ({ location, type, scoreSetter }) => {
   const proxy = "http://localhost:4000/";
-  const api_key = "redacted";
+  const api_key = "AIzaSyAHdpUPRlrK5YBICcmpB3Chzi5_YeoENv0";
   const [nearbyLocales, setNearbyLocales] = useState([]);
+  const [listCount, setListCount] = useState(5);
 
   useEffect(() => {
     const lat = location.geometry.location.lat();
@@ -43,6 +44,15 @@ const Nearby = ({ location, type, scoreSetter }) => {
       });
   }, []);
 
+  function expandList(event) {
+    event.preventDefault();
+    if (listCount > 5) {
+      setListCount(5);
+    } else {
+      setListCount(nearbyLocales.length);
+    }
+  }
+
   return (
     <div className="item">
       {nearbyLocales && (
@@ -53,7 +63,7 @@ const Nearby = ({ location, type, scoreSetter }) => {
               {nearbyLocales.length > 10 ? "10+" : nearbyLocales.length})
             </b>
           </p>
-          {nearbyLocales.slice(0, 10).map((cafe) => {
+          {nearbyLocales.slice(0, listCount).map((cafe) => {
             return (
               <li key={cafe.place_id}>
                 <a
@@ -69,6 +79,19 @@ const Nearby = ({ location, type, scoreSetter }) => {
               </li>
             );
           })}
+          {nearbyLocales.length > 5 ? (
+            <li>
+              <a
+                rel="noreferrer"
+                href="/"
+                onClick={(event) => expandList(event)}
+              >
+                <b>{listCount > 5 ? "less..." : "more..."}</b>
+              </a>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       )}
     </div>

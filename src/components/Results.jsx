@@ -1,22 +1,30 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Nearby from "./Nearby";
 import Ratings from "./Ratings";
 
 const mapStyles = {
-  width: "50%",
-  height: "50%",
+  width: "700px",
+  height: "500px",
 };
 
 const Results = ({ location }) => {
   const [latLng, setLatLng] = useState({ lat: 0, lng: 0 });
-  const [totalScore, setTotalScore] = useState(0);
+  const [totalScore, setTotalScore] = useState(null);
+  const [scoreColor, setScoreColor] = useState("");
   const [numCafes, setNumCafes] = useState(null);
   const [isNearLibrary, setIsNearLibrary] = useState(false);
 
   function setScore(score) {
     setTotalScore(score);
+    if (score >= 7) {
+      setScoreColor("green");
+    } else if (score > 3 && score < 7) {
+      setScoreColor("yellow");
+    } else if (score <= 3) {
+      setScoreColor("red");
+    }
   }
 
   function getCafes(numCafes) {
@@ -25,11 +33,10 @@ const Results = ({ location }) => {
 
   function getLibraries(libraryPresent) {
     setIsNearLibrary(libraryPresent);
-    console.log("Library nearby? " + libraryPresent);
   }
 
-  useEffect(() => {
-    console.log(location);
+  useLayoutEffect(() => {
+    // console.log(location);
     const lat = location.geometry.location.lat();
     const lng = location.geometry.location.lng();
     setLatLng({
@@ -49,24 +56,17 @@ const Results = ({ location }) => {
             {location.address_components[7].short_name}
           </li>
         </div>
-        <div className="overall_rating">{totalScore}/8</div>
+        {totalScore !== null && (
+          <div className={"overall_rating " + scoreColor}>{totalScore}/8</div>
+        )}
       </div>
       <div className="results">
         <div className="left">
-          <GoogleMap zoom={14} mapContainerStyle={mapStyles} center={latLng}>
-            <Marker key={location.name} position={latLng} />
-          </GoogleMap>
-          <div className="nearbyresults">
-            <Nearby location={location} type="cafe" scoreSetter={getCafes} />
-            <Nearby location={location} type="park" />
-            <Nearby location={location} type="restaurant" />
-            <Nearby
-              location={location}
-              type="library"
-              scoreSetter={getLibraries}
-            />
-            <Nearby location={location} type="transit_station" />
-            <Nearby location={location} type="light_rail_station" />
+          <div className="spacer"> </div>
+          <div className="map">
+            <GoogleMap zoom={14} mapContainerStyle={mapStyles} center={latLng}>
+              <Marker key={location.name} position={latLng} />
+            </GoogleMap>
           </div>
         </div>
         <div className="right">
@@ -77,6 +77,14 @@ const Results = ({ location }) => {
             isNearLibrary={isNearLibrary}
           />
         </div>
+      </div>
+      <div className="nearbyresults">
+        <Nearby location={location} type="cafe" scoreSetter={getCafes} />
+        <Nearby location={location} type="park" />
+        <Nearby location={location} type="restaurant" />
+        <Nearby location={location} type="library" scoreSetter={getLibraries} />
+        <Nearby location={location} type="transit_station" />
+        <Nearby location={location} type="light_rail_station" />
       </div>
     </>
   );

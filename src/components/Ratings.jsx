@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+// import logo from "../assets/loadinghouse.gif";
 
 const Ratings = ({ location, setScore, numCafes, isNearLibrary }) => {
   const [walkScore, setWalkScore] = useState(null);
@@ -10,7 +11,7 @@ const Ratings = ({ location, setScore, numCafes, isNearLibrary }) => {
   const [cafeScore, setCafeScore] = useState(0);
   //5,000 daily limit to the Walk Score API: redacted
   const proxy = "http://localhost:4000/";
-  const api_key = "redacted";
+  const api_key = "b92c50552b95766632e07dc09cca20a1";
 
   function updateScores() {
     var score = 0;
@@ -56,10 +57,12 @@ const Ratings = ({ location, setScore, numCafes, isNearLibrary }) => {
     updateScores();
   }, [location, walkScore, bikeScore, numCafes]);
 
+  //if (!walkScore || !bikeScore || !cafeScore) return <p>Loading...</p>;
+
   return (
     <div className="ratings">
-      <div className="rating">🚶🏻‍♀️ Walk Score: {walkScore}/100</div>
-      <div className="rating">🚴🏽 Bike Score: {bikeScore}/100</div>
+      <div className="rating">👟 Walk Score: {walkScore}/100</div>
+      <div className="rating">🚲 Bike Score: {bikeScore}/100</div>
       {/* <div className="rating">🚌 Transit Score: {transitScore}</div> */}
       <div className="rating">☕️ Café Score: {cafeScore} / 2</div>
       <div className="rating">

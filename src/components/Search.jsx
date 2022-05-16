@@ -4,7 +4,7 @@ import Autocomplete from "react-google-autocomplete";
 const Search = ({ handleSelection }) => {
   //This is where api_key is initially coming from I guess
   // Using different libraries for Autocomplete and for GoogleMap :/
-  const api_key = "redacted";
+  const api_key = "AIzaSyAHdpUPRlrK5YBICcmpB3Chzi5_YeoENv0";
   const options = {
     componentRestrictions: { country: "us" },
     fields: ["address_components", "geometry", "icon", "name"],
@@ -31,7 +31,12 @@ const Search = ({ handleSelection }) => {
             />
           </div>
         </label>
-        <input type="submit" value="Submit" id="submit" />
+        <input
+          type="button"
+          value="Submit"
+          id="submit"
+          onClick={(e) => handleSubmit(e)}
+        />
       </form>
     </div>
   );

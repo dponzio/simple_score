@@ -33,9 +33,12 @@ hr {
 a:link,
 a:visited,
 a:active {
-  margin: 10px;
   color: #121212;
   text-decoration: none;
+}
+
+.link {
+  padding: 10px;
 }
 
 a:hover {
@@ -53,7 +56,8 @@ input {
 }
 
 .search {
-  width: 40vw;
+  min-width: 500px;
+  width: 30vw;
   height: 40px;
   padding-left: 15px;
   font-size: 15px;
@@ -86,14 +90,25 @@ input {
 }
 
 .nearbyresults {
-  width: 50vw;
-  height: 50vh;
+  width: 50%;
+  max-width: 700px;
+  height: 100%;
   justify-content: space-evenly;
   text-align: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.nearby {
+  list-style: none;
+  text-align: left;
+  padding-left: 0px;
 }
 
 .item {
@@ -101,14 +116,9 @@ input {
   justify-content: left;
 }
 
-.nearby {
-  list-style: none;
-  text-align: left;
-}
-
 .results {
   width: 90vw;
-  height: 90vh;
+  height: 600px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -120,16 +130,15 @@ input {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding-bottom: 30px;
-  /* padding-left: 100px; */
+  padding-bottom: 15px;
+  padding: 20px;
 }
 
 .overall_rating {
-  background-color: lightseagreen;
   color: whitesmoke;
   width: 75px;
   height: 75px;
-  border-radius: 50%;
+  border-radius: 15px;
   margin-left: 40px;
   font-size: 25px;
   font-weight: bolder;
@@ -142,8 +151,10 @@ input {
   width: 60%;
   height: 90%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  padding-right: 50px;
+  flex: 2;
 }
 
 .right {
@@ -152,6 +163,11 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
+}
+
+.spacer {
+  flex: 2;
 }
 
 .map {
@@ -159,9 +175,9 @@ input {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
-  padding: 0;
+  height: 700px;
   margin: 0;
+  flex: 1;
 }
 
 .ratings {
@@ -185,4 +201,16 @@ input {
   line-height: 75px;
   font-size: 30px;
   font-weight: bold;
+}
+
+.red {
+  background-color: lightcoral;
+}
+
+.yellow {
+  background-color: rgb(254, 195, 86);
+}
+
+.green {
+  background-color: lightseagreen;
 }

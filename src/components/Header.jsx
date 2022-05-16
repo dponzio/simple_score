@@ -14,10 +14,22 @@ const Header = ({ showTitle }) => {
       </div>
       <div className="links">
         <div className="link">
-          <a href="/">About</a>
+          <a
+            href="https://github.com/dponzio/simple_score/blob/main/README.md"
+            target="_blank"
+            rel="noreferrer"
+          >
+            About
+          </a>
         </div>
         <div className="link">
-          <a href="/">Github</a>
+          <a
+            href="https://github.com/dponzio/simple_score"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </a>
         </div>
       </div>
     </header>
