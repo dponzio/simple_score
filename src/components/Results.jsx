@@ -3,6 +3,10 @@ import React from "react";
 import { useLayoutEffect, useState } from "react";
 import Nearby from "./Nearby";
 import Ratings from "./Ratings";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Pluralize from "pluralize";
+import InfoDialogButton from "./InfoDialogButton";
 
 const mapStyles = {
   width: "700px",
@@ -15,6 +19,22 @@ const Results = ({ location }) => {
   const [scoreColor, setScoreColor] = useState("");
   const [numCafes, setNumCafes] = useState(null);
   const [isNearLibrary, setIsNearLibrary] = useState(false);
+  const [nearbySwitch, setNearbySwitch] = useState(0);
+  const [done, setDone] = useState(false);
+
+  const nearbyTypes = [
+    "cafe",
+    "park",
+    "restaurant",
+    "library",
+    "transit_station",
+    "train_station",
+  ];
+
+  function checkScores() {
+    setDone(true);
+    console.log("calculation done: " + done);
+  }
 
   function setScore(score) {
     setTotalScore(score);
@@ -56,8 +76,10 @@ const Results = ({ location }) => {
             {location.address_components[7].short_name}
           </li>
         </div>
-        {totalScore !== null && (
+        {totalScore !== null && done ? (
           <div className={"overall_rating " + scoreColor}>{totalScore}/8</div>
+        ) : (
+          <div className="overall_rating"></div>
         )}
       </div>
       <div className="results">
@@ -75,16 +97,95 @@ const Results = ({ location }) => {
             setScore={setScore}
             numCafes={numCafes}
             isNearLibrary={isNearLibrary}
+            checkScores={checkScores}
           />
         </div>
       </div>
+      <div className="desktopMenu">
+        <ButtonGroup
+          variant="outlined"
+          aria-label="outlined button group"
+          style={{ flexWrap: "wrap" }}
+        >
+          {nearbyTypes.map((type) => {
+            return (
+              <Button
+                onClick={(event) => {
+                  setNearbySwitch(nearbyTypes.indexOf(type));
+                }}
+                key={type}
+                variant={
+                  nearbySwitch === nearbyTypes.indexOf(type)
+                    ? "contained"
+                    : "outlined"
+                }
+              >
+                {Pluralize(type).replaceAll("_", " ")}
+              </Button>
+            );
+          })}
+          <InfoDialogButton />
+        </ButtonGroup>
+      </div>
+      <div className="mobileMenu">
+        <ButtonGroup
+          variant="text"
+          aria-label="text button group"
+          style={{ flexWrap: "wrap" }}
+        >
+          {nearbyTypes.map((type) => {
+            return (
+              <Button
+                onClick={(event) => {
+                  setNearbySwitch(nearbyTypes.indexOf(type));
+                }}
+                key={type}
+                variant={
+                  nearbySwitch === nearbyTypes.indexOf(type)
+                    ? "primary"
+                    : "text"
+                }
+              >
+                {Pluralize(type).replaceAll("_", " ")}
+              </Button>
+            );
+          })}
+          <InfoDialogButton />
+        </ButtonGroup>
+      </div>
       <div className="nearbyresults">
-        <Nearby location={location} type="cafe" scoreSetter={getCafes} />
-        <Nearby location={location} type="park" />
-        <Nearby location={location} type="restaurant" />
-        <Nearby location={location} type="library" scoreSetter={getLibraries} />
-        <Nearby location={location} type="transit_station" />
-        <Nearby location={location} type="light_rail_station" />
+        <Nearby
+          isHidden={nearbySwitch === 0 ? false : true}
+          location={location}
+          type="cafe"
+          scoreSetter={getCafes}
+        />
+        <Nearby
+          isHidden={nearbySwitch === 1 ? false : true}
+          location={location}
+          type="park"
+        />
+        <Nearby
+          isHidden={nearbySwitch === 2 ? false : true}
+          location={location}
+          type="restaurant"
+        />
+        <Nearby
+          isHidden={nearbySwitch === 3 ? false : true}
+          location={location}
+          type="library"
+          scoreSetter={getLibraries}
+        />
+        <Nearby
+          isHidden={nearbySwitch === 4 ? false : true}
+          location={location}
+          type="transit_station"
+        />
+        <Nearby
+          isHidden={nearbySwitch === 5 ? false : true}
+          location={location}
+          type="train_station"
+        />
       </div>
     </>
   );

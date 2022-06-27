@@ -1,12 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Pluralize from "pluralize";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import Button from "@mui/material/Button";
+import Placeholder from "../assets/placeholder.png";
 
-const Nearby = ({ location, type, scoreSetter }) => {
-  const proxy = "http://localhost:4000/";
-  const api_key = "AIzaSyAHdpUPRlrK5YBICcmpB3Chzi5_YeoENv0";
+const Nearby = ({ location, type, scoreSetter, isHidden }) => {
+  const proxy = "https://arcane-gorge-12114.herokuapp.com/";
+  const api_key = "AIzaSyDqbm6WKETGpphXwlvMGgKShoMX9K2bN3w";
   const [nearbyLocales, setNearbyLocales] = useState([]);
-  const [listCount, setListCount] = useState(5);
+  const [listCount, setListCount] = useState(8);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const lat = location.geometry.location.lat();
@@ -46,53 +55,83 @@ const Nearby = ({ location, type, scoreSetter }) => {
 
   function expandList(event) {
     event.preventDefault();
-    if (listCount > 5) {
-      setListCount(5);
-    } else {
+    if (!isExpanded) {
       setListCount(nearbyLocales.length);
+      setIsExpanded(true);
+    } else if (isExpanded) {
+      setListCount(8);
+      setIsExpanded(false);
     }
   }
 
   return (
-    <div className="item">
+    <div className={isHidden ? "item hidden" : "item"}>
       {nearbyLocales && (
-        <ul className="nearby">
-          <p>
-            <b>
-              Nearby {type}s (
-              {nearbyLocales.length > 10 ? "10+" : nearbyLocales.length})
-            </b>
-          </p>
-          {nearbyLocales.slice(0, listCount).map((cafe) => {
-            return (
-              <li key={cafe.place_id}>
-                <a
-                  href={
-                    "https://www.google.com/maps/place/?q=place_id:" +
-                    cafe.place_id
-                  }
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {cafe.name}
-                </a>
-              </li>
-            );
-          })}
-          {nearbyLocales.length > 5 ? (
-            <li>
-              <a
-                rel="noreferrer"
-                href="/"
-                onClick={(event) => expandList(event)}
-              >
-                <b>{listCount > 5 ? "less..." : "more..."}</b>
-              </a>
-            </li>
+        <div className="nearby">
+          <div className="nearbyArea">
+            {nearbyLocales.length === 0 && (
+              <div>
+                <p> No {Pluralize(type).replaceAll("_", " ")} nearby... </p>
+              </div>
+            )}
+            {nearbyLocales.length > 0 &&
+              nearbyLocales
+                .sort((a, b) => (a.rating > b.rating ? -1 : 1))
+                .slice(0, listCount)
+                .map((cafe) => {
+                  return (
+                    <div key={cafe.place_id} className="nearbyCard">
+                      <Card sx={{ width: 300, maxHeight: 275 }}>
+                        <CardActionArea
+                          href={
+                            "https://www.google.com/maps/place/?q=place_id:" +
+                            cafe.place_id
+                          }
+                          target="_blank"
+                        >
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              {cafe.name}{" "}
+                              <span style={{ fontSize: "15px" }}>
+                                ({cafe.rating} ⭐️)
+                              </span>
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {cafe.vicinity}
+                            </Typography>
+                          </CardContent>
+                          <CardMedia
+                            component="img"
+                            height="200"
+                            image={
+                              cafe.hasOwnProperty("photos")
+                                ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${cafe.photos[0].photo_reference}&key=${api_key}`
+                                : Placeholder
+                            }
+                            alt={cafe.name}
+                          />
+                        </CardActionArea>
+                      </Card>
+                    </div>
+                  );
+                })}
+          </div>
+          {listCount <= 8 && nearbyLocales.length > 8 && !isExpanded ? (
+            <Button variant="outlined" onClick={(event) => expandList(event)}>
+              Show more
+            </Button>
+          ) : nearbyLocales.length > 8 && isExpanded ? (
+            <Button variant="outlined" onClick={(event) => expandList(event)}>
+              Show less
+            </Button>
           ) : (
             ""
           )}
-        </ul>
+        </div>
       )}
     </div>
   );

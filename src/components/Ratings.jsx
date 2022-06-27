@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-// import logo from "../assets/loadinghouse.gif";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 
-const Ratings = ({ location, setScore, numCafes, isNearLibrary }) => {
+const Ratings = ({
+  location,
+  setScore,
+  numCafes,
+  isNearLibrary,
+  checkScores,
+}) => {
   const [walkScore, setWalkScore] = useState(null);
   const [bikeScore, setBikeScore] = useState(null);
   // Transit score not working with walkscore API at the moment
   //const [transitScore, setTransitScore] = useState(null);
   const [cafeScore, setCafeScore] = useState(0);
-  //5,000 daily limit to the Walk Score API: redacted
-  const proxy = "http://localhost:4000/";
+  const [isReady, setIsReady] = useState(false);
+  const proxy = "https://arcane-gorge-12114.herokuapp.com/";
   const api_key = "b92c50552b95766632e07dc09cca20a1";
 
   function updateScores() {
@@ -28,6 +37,7 @@ const Ratings = ({ location, setScore, numCafes, isNearLibrary }) => {
       setCafeScore(1);
     }
     if (isNearLibrary) score = score + 2;
+
     setScore(score);
   }
 
@@ -46,28 +56,49 @@ const Ratings = ({ location, setScore, numCafes, isNearLibrary }) => {
 
     axios(config)
       .then(function (response) {
-        console.log(response.data);
         setWalkScore(response.data.walkscore);
         setBikeScore(response.data.bike.score);
+        setIsReady(true);
       })
       .catch(function (error) {
         console.log(error);
       });
 
     updateScores();
-  }, [location, walkScore, bikeScore, numCafes]);
 
-  //if (!walkScore || !bikeScore || !cafeScore) return <p>Loading...</p>;
+    if (isReady) checkScores();
+  }, [location, walkScore, bikeScore, numCafes, isReady]);
 
   return (
     <div className="ratings">
-      <div className="rating">👟 Walk Score: {walkScore}/100</div>
-      <div className="rating">🚲 Bike Score: {bikeScore}/100</div>
-      {/* <div className="rating">🚌 Transit Score: {transitScore}</div> */}
-      <div className="rating">☕️ Café Score: {cafeScore} / 2</div>
-      <div className="rating">
-        📚 Library nearby? {isNearLibrary ? "Yes" : "No"}
-      </div>
+      <Card className="rating">
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            👟 Walk Score: {walkScore ? walkScore + "/100" : ""}
+          </Typography>
+        </CardContent>
+      </Card>
+      <Card className="rating">
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            🚲 Bike Score: {bikeScore ? bikeScore + "/100" : ""}
+          </Typography>
+        </CardContent>
+      </Card>
+      <Card className="rating">
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            ☕️ Café Score: {cafeScore}/2
+          </Typography>
+        </CardContent>
+      </Card>
+      <Card className="rating">
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            📚 Library nearby? {isNearLibrary ? "Yes" : "No"}
+          </Typography>
+        </CardContent>
+      </Card>
     </div>
   );
 };
