@@ -20,7 +20,7 @@ const Ratings = ({
   const [cafeScore, setCafeScore] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const proxy = "https://arcane-gorge-12114.herokuapp.com/";
-  const api_key = "b92c50552b95766632e07dc09cca20a1";
+  const api_key = "redacted";
 
   function updateScores() {
     var score = 0;
