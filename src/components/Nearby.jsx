@@ -12,7 +12,7 @@ import Placeholder from "../assets/placeholder.png";
 
 const Nearby = ({ location, type, scoreSetter, isHidden }) => {
   const proxy = "https://arcane-gorge-12114.herokuapp.com/";
-  const api_key = "AIzaSyDqbm6WKETGpphXwlvMGgKShoMX9K2bN3w";
+  const api_key = "redacted";
   const [nearbyLocales, setNearbyLocales] = useState([]);
   const [listCount, setListCount] = useState(8);
   const [isExpanded, setIsExpanded] = useState(false);
