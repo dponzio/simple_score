@@ -8,7 +8,7 @@ const searchStyles = {
 const Search = ({ handleSelection }) => {
   //This is where api_key is initially coming from I guess
   // Using different libraries for Autocomplete and for GoogleMap :/
-  const api_key = "AIzaSyDqbm6WKETGpphXwlvMGgKShoMX9K2bN3w";
+  const api_key = "redacted";
   const options = {
     componentRestrictions: { country: "us" },
     fields: ["address_components", "geometry", "icon", "name"],
