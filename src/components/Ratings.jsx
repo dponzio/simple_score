@@ -19,7 +19,7 @@ const Ratings = ({
   //const [transitScore, setTransitScore] = useState(null);
   const [cafeScore, setCafeScore] = useState(0);
   const [isReady, setIsReady] = useState(false);
-  const proxy = "https://arcane-gorge-12114.herokuapp.com/";
+  const proxy = "https://cors-prox-backend.onrender.com/";
   const api_key = "redacted";
 
   function updateScores() {
