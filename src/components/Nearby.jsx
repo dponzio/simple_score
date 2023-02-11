@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import Placeholder from "../assets/placeholder.png";
 
 const Nearby = ({ location, type, scoreSetter, isHidden }) => {
-  const proxy = "https://arcane-gorge-12114.herokuapp.com/";
+  const proxy = "https://cors-prox-backend.onrender.com/";
   const api_key = "redacted";
   const [nearbyLocales, setNearbyLocales] = useState([]);
   const [listCount, setListCount] = useState(8);
